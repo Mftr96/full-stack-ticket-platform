@@ -66,5 +66,5 @@ Ho creato quindi una relazione one to many tra categories e tickets e operators 
 milestone 2:Sono partito dunque con la creazione del progetto da zero utilizzando come riferimento il seguente file:
 [IKEALARAVEL](./IKEALARAVEL.MD).
 Seguendo i passaggi, ottengo così una struttura di base del progetto che ha già una pagina di autenticazione ed una  dashboard.
-Parto conla creazione dei Models e vado ad importare le migration create tramite drawsql.
+Parto con la creazione dei Models e vado ad importare le migration create tramite drawsql.
 Saranno da creare i seeder per gli operatori. 
