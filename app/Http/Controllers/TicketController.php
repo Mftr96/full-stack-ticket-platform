@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Operator;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TicketController extends Controller
 {
@@ -33,15 +34,21 @@ class TicketController extends Controller
     public function store(Request $request){
         $data=$request->validate([
             #requiring category and operator id
-            "category_id"=>"required",
-            "operator_id"=>"required",
+            "title"=>"required",
+            "description"=>"required",
+            "category_id"=>"required|integer|exists:categories,id",
+            "operator_id"=>"required|integer|exists:operators,id",
         ]);
-        #creating new istance of Ticket
-        $newTicket=new Ticket();
-        $newTicket->fill($data);
-        dd($newTicket);
+        #dd($data);
+        $newTicket= new Ticket();
+        $newTicket->title=$data['title'];
+        $newTicket->description=$data['description'];
+        $newTicket->status="ASSEGNATO";
+        $newTicket->category_id=$data['category_id'];
+        $newTicket->operator_id=$data['operator_id'];
+        #dd($newTicket); 
+
+        $newTicket->save();
+        return redirect()->route('ticket.index')->with('message','ticket salvato correttamente'); 
     }
-
-
-
 }
