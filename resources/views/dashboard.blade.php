@@ -19,6 +19,7 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                {{-- creare link per index di operator, category e ticket --}}
             </div>
         </div>
     </div>

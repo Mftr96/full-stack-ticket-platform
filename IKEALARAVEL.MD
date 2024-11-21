@@ -46,7 +46,7 @@ php artisan ti
 ```
 Al lancio del comando scrivendo la seguente riga creerà l'utente(la password predefinita è 'password'):
 ```bash
->User::factory()->create(['email'=>'mail'])
+>User::factory()->create(['email'=>'email@fittizia.com'])
 ```
 fare exit poi per uscire dalla creazione
 

@@ -67,4 +67,62 @@ milestone 2:Sono partito dunque con la creazione del progetto da zero utilizzand
 [IKEALARAVEL](./IKEALARAVEL.MD).
 Seguendo i passaggi, ottengo così una struttura di base del progetto che ha già una pagina di autenticazione ed una  dashboard.
 Parto con la creazione dei Models e vado ad importare le migration create tramite drawsql.
-Saranno da creare i seeder per gli operatori. 
+```bash
+php artisan make:model Operator
+php artisan make:model Category
+php artisan make:model Ticket
+```
+Saranno da creare i seeder per gli operatori.
+```bash
+php artisan make:seeder OperatorSeeder
+php artisan make:seeder CategorySeeder
+php artisan make:seeder TicketSeeder
+```
+Per Operator viene creato un factory per creare in modo casuale i nome degli operatori.
+(nel comando da terminale bisogna specificare su quale modello va a lavorare, in questo caso Operator).
+```bash
+php artisan make:factory OperatorFactory --model=Operator
+```
+Arrivati a questo punto dopo aver lanciato il comando:
+```bash
+php artisan migrate:fresh --seed
+```
+avremo i Model delle tre entità, le migration, i seeder e il database popolato tramite seeder.
+Ora che ho i dati pronti vado a creare i controller con il comando da terminale:
+```bash
+php artisan make:controller OperatorController
+php artisan make:controller CategoryController
+php artisan make:controller TicketController
+```
+ed incomincio a scrivere le C.R.U.D. per i controller.
+Per quanto riguarda Operator e Category andrò a fare al momento solo una funzione index 
+per andare a rappresentare in pagina la lista degli operatori e delle categorie.
+Qui c'è l'esempio di come ho scritto la funzione index per operator nel relativo controller:
+
+```php
+    public function index(){
+        $operators=Operator::all();
+        $data=[
+            'operators'=>$operators,
+        ];
+
+        return view('operator.index', $data);
+
+    }
+```
+Oltre alla scrittura delle C.R.U.D. creo anche la cartella per le viste delle entità.
+(Ricordati che quando accedi ai dati nella vista non accedi direttamente da $data ma dalla chiave che in questo caso sarà $operators). 
+L'operazione in sintesi per la costruzione delle viste prevede:
+-la scrittura della funzione sul controller che abbia come return la vista relativa
+-la scrittura della rotta sul file web.php della rotta
+-la creazione del file della vista 
+
+milestone 3: la milestone 3 viene praticamente eseguita nel seguire i passaggi di creazione di [IKEALARAVEL](./IKEALARAVEL.MD).
+Vengono aggiunte le viste relative agli index di categories e operators.
+
+milestone 4:
+questa milestone prevede la creazione della vista create relativa all'entità ticket e della creazione della funzione store 
+nel relativo controller che vada a salvare i dati immessi nel database creando così un nuovo ticket.
+Viene quindi fatta la vista create [create-ticket](./resources/views/ticket/create.blade.php) e creato il form che indirizza 
+alla funzione store nel controller.
+Nel controller[TicketController](./app/Http/Controllers/TicketController.php)
