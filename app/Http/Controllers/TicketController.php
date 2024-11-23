@@ -12,7 +12,7 @@ class TicketController extends Controller
 {
     //aggiungere categoria e operatore nella query
     public function index(){
-        $tickets=Ticket::with(['categories','operators'])->paginate(8);
+        $tickets=Ticket::with(['category','operator'])->paginate(8);
         $data=[
             'tickets'=>$tickets,
         ];
@@ -43,6 +43,7 @@ class TicketController extends Controller
         $newTicket= new Ticket();
         $newTicket->title=$data['title'];
         $newTicket->description=$data['description'];
+        #default status value
         $newTicket->status="ASSEGNATO";
         $newTicket->category_id=$data['category_id'];
         $newTicket->operator_id=$data['operator_id'];

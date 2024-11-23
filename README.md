@@ -125,4 +125,47 @@ questa milestone prevede la creazione della vista create relativa all'entità ti
 nel relativo controller che vada a salvare i dati immessi nel database creando così un nuovo ticket.
 Viene quindi fatta la vista create [create-ticket](./resources/views/ticket/create.blade.php) e creato il form che indirizza 
 alla funzione store nel controller.
-Nel controller[TicketController](./app/Http/Controllers/TicketController.php)
+Nel controller[TicketController](./app/Http/Controllers/TicketController.php) scrivo la funzione store che salva i dati nel database e reindirizza alla vista index dei ticket.
+Un punto importante che ho imparato in questa milestone è stata la risoluzione del seguente problema:
+nella vista index volevo stampare i dati relativi ai ticket ma non riuscivo ad accedere alla colonna name di category nonostante avessi scritto l'operazione.
+Chiedendo a Qodo gen diceva che il problema era nel fatto che avessi chiamato la funzione nel model categories invece di category:
+[Ticket](./app/Models/Ticket.php)
+```php
+#esempio sulla funzione funzione per category: come l'avevo scritta 
+  public function categories(){
+        return $this->belongsTo(Category::class);
+    } 
+    #... come dovrebbe essere scritta 
+      public function category(){
+        return $this->belongsTo(Category::class);
+    } 
+```
+ma cambiando solo quella mi dava errore in pagina di undefined relationship.
+Stampando tutto il ticket in pagina notavo che mi creava una chiave categories oltre a category_id ma che aveva valore null.
+Ho richiesto quindi a qodo gen che perchè con la sua modifica ancora non andava , e giustamente mi fa notare che il nome della funzione che scriviamo nel  model deve essere ripreso nel controller quando uso la funzione with ():
+[TicketController](./app/Http/Controllers/TicketController.php)
+```php
+#come era scritta
+    public function index(){
+        $tickets=Ticket::with(['categories','operators'])->paginate(8);  #
+        $data=[
+            'tickets'=>$tickets,
+        ];
+
+        return view('ticket.index', $data);
+
+    }
+
+    #come dovrebbe essere scritta:vedere argomenti with
+        public function index(){
+        $tickets=Ticket::with(['category','operator'])->paginate(8);  #
+        $data=[
+            'tickets'=>$tickets,
+        ];
+
+        return view('ticket.index', $data);
+
+    }
+    
+
+```

@@ -9,11 +9,11 @@ class Ticket extends Model
 {
     //defining relationship with categories and operators
     use HasFactory;
-    public function categories(){
+    public function category(){
         return $this->belongsTo(Category::class);
     } 
 
-    public function operators(){
+    public function operator(){
         return $this->belongsTo(Operator::class);
     }
 }
