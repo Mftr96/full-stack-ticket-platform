@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Log;
 
 class TicketController extends Controller
 {
-    //aggiungere categoria e operatore nella query
+    #INDEX FUNCTION
     public function index(){
+        #adding category and operaton into query 
         $tickets=Ticket::with(['category','operator'])->paginate(8);
         $data=[
             'tickets'=>$tickets,
@@ -20,7 +21,7 @@ class TicketController extends Controller
         return view('ticket.index', $data);
 
     }
-    //go to create ticket view 
+    #CREATE FUNCTION 
     public function create(){
     #passing operator and category in create view
         $data=[
@@ -30,7 +31,7 @@ class TicketController extends Controller
 
         return view('ticket.create',$data);
     }
-
+    #STORE FUNCTION
     public function store(Request $request){
         $data=$request->validate([
             #requiring category and operator id
@@ -51,5 +52,15 @@ class TicketController extends Controller
 
         $newTicket->save();
         return redirect()->route('ticket.index')->with('message','ticket salvato correttamente'); 
+    }
+    #SHOW FUNCTION
+
+    public function show(Ticket $ticket)
+    {
+        #dd($ticket);
+        $data = [
+            'ticket' => $ticket,
+        ];
+        return view('ticket.show', $data);
     }
 }

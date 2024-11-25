@@ -8,9 +8,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">titolo ticket</th>
-                <th scope="col">descrizione </th>
-                <th scope="col">gestito da </th>
                 <th scope="col">status ticket</th>
+                <th scope="col">vai al ticket</th>
             </tr>
         </thead>
         <tbody>
@@ -18,9 +17,14 @@
                 <tr>
                     <th scope="row">{{$ticket->id}}</th>
                     <td>{{ $ticket->title }}</td>
-                    <td>{{ $ticket->description }}</td>
-                    <td>{{ $ticket->category->name }}</td>
                     <td>{{$ticket->status}}</td>
+                    <td>
+                        {{-- vedere modo per usare fontawesome  --}}
+                        <a href="{{route('ticket.show',$ticket->id)}}"> 
+                            <i class="fa-solid fa-ticket"></i>
+                        </a>
+                    </td>
+                    
                 </tr>
             @endforeach
         </tbody>

@@ -4,8 +4,10 @@ Questo progetto fa parte della serie di esercizi consegnati nel coding training 
 Il coding training consiste in un incontro alla settimana post-corso in cui per tenersi in allenamento con il codice vengono proposti esercizi per tenersi allenati nella programmazione, ma anche nell'esposizione del contenuto di fronte ad altri studenti, in un ambiente molto stimolante. 
 Qui di sotto è riportata la consegna.   
 
+
+## consegna
 <aside>
-📚 📑 **Consegna** 
+📚 📑  
 Realizziamo un’applicazione in Laravel che visualizza e permette di gestire e visualizzare dei **Ticket di supporto**.
 
 E’ prevista una sola tipologia di utente: un Admin che ha accesso alla lista degli operatori, dei ticket e delle relative categorie assegnabili.
@@ -169,3 +171,7 @@ Ho richiesto quindi a qodo gen che perchè con la sua modifica ancora non andava
     
 
 ```
+milestone 5: questo punto consistente nella creazione di una vista show con relativa funzione sul controller per mostrare il dettaglio di un ticket.
+Oltre alla vista ed alla funzione nel controller, sarà utile creare un button nella vista index di tickets che rimandi al dettaglio di ogni singolo biglietto.
+Attenzione a scrivere nella rotta sul file web che sarà:ticket/{ticket}
+ 
