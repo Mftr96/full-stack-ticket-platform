@@ -7,10 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-
+    const STATUS_VALUES = ['ASSEGNATO', 'IN LAVORAZIONE', 'CHIUSO'];
+    #fillable column that can be changed in update
     protected $fillable=[
         'title',
         'description',
+        'status',
+        'category_id',
+        'operator_id',
 
     ];
     //defining relationship with categories and operators

@@ -171,7 +171,18 @@ Ho richiesto quindi a qodo gen che perchè con la sua modifica ancora non andava
     
 
 ```
-milestone 5: questo punto consistente nella creazione di una vista show con relativa funzione sul controller per mostrare il dettaglio di un ticket.
+milestone 5: questo punto consiste nella creazione di una vista show con relativa funzione sul controller per mostrare il dettaglio di un ticket.
 Oltre alla vista ed alla funzione nel controller, sarà utile creare un button nella vista index di tickets che rimandi al dettaglio di ogni singolo biglietto.
-Attenzione a scrivere nella rotta sul file web che sarà:ticket/{ticket}
- 
+Attenzione a scrivere nella rotta sul file web che sarà ticket/{ticket} per la show
+
+ milestone 6:creare pagina update per ticket con possibilità di aggiornare solo lo stato del ticket  
+ come sempre creare prima la funzione nel controller, poi la rotta su web.php ed infine la vista nella cartella ticket.
+ Creare prima vista edit, procedere poi alla funzione update.
+ Per la rotta update sarà da strutturare nel seguente modo:
+ nel [TicketController](./app/Http/Controllers/TicketController.php) andiamo ad implementare la funzione update.
+ In  [web.php](./routes/web.php) andiamo a definire la rotta update .
+ ```php
+ #patch perchè dobbiamo andare ad aggiornare, e la rotta dovrà avere{ticket} per andare a definire il ticket da modificare 
+    Route::patch('/ticket/update/{ticket}',[TicketController::class,'update'])->name('ticket.update');
+ ```
+Andiamo poi nell'[Index di ticket](./resources/views/ticket/index.blade.php) per creare il collegamento alla relativa pagina edit.

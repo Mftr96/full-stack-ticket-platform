@@ -39,7 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/ticket',[TicketController::class,'index'])->name('ticket.index');
     Route::get('/ticket/create',[TicketController::class,'create'])->name('ticket.create');
     Route::get('/ticket/{ticket}',[TicketController::class,'show'])->name('ticket.show');
+    Route::get('/ticket/edit/{ticket}',[TicketController::class,'edit'])->name('ticket.edit');
     Route::post('/ticket/store',[TicketController::class,'store'])->name('ticket.store');
+    Route::patch('/ticket/update/{ticket}',[TicketController::class,'update'])->name('ticket.update');
 
     
 });
